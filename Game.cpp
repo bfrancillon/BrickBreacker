@@ -76,9 +76,23 @@ void Game::Render() const
 	ball.Draw();
 
 	// TODO #3 - Update render to render all bricks
-	brick.Draw();
-	
+	for (int i = 0; i < bricks.size(); i++)
+	{
+		bricks[i].Draw();
+	}
+
+	if (bricks.size() == 0)
+	{
+
+		Console::WordWrap(10, 10, 10, "You Win! Press R to restart.");
+	}
+
+	if (paddle.y_position < ball.y_position)
+	{
+		Console::WordWrap(10, 10, 10, "You LOSE! Press R to restart.");
+	}
 	Console::Lock(false);
+	
 }
 
 void Game::CheckCollision()
