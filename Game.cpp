@@ -1,7 +1,5 @@
 #include "stdafx.h"
 #include "Game.h"
-#include <vector>
-using namespace std;
 
 Game::Game()
 {
@@ -21,18 +19,20 @@ void Game::Reset()
 	ball.color = ConsoleColor::Cyan;
 	ResetBall();
 
+
 	// TODO #2 - Add this brick and 4 more bricks to the vector
-	for (int i = 0; i < 5; i++)
-	{
-		brick.width = 10;
-		brick.height = 2;
-		brick.x_position = i * (Console::WindowWidth() / 5);
-		brick.y_position = 5;
-		brick.doubleThick = true;
-		brick.color = ConsoleColor::DarkGreen;
-		bricks.push_back(brick);
-	}
 	
+		
+		for (int i = 0; i < 5; i++) 
+		{
+			brick.width = 10;
+			brick.height = 2;
+			brick.x_position = i * (Console::WindowWidth() /5);
+			brick.y_position = 5;
+			brick.doubleThick = true;
+			brick.color = ConsoleColor::DarkGreen;
+			bricks.push_back(brick);
+		}	
 }
 
 void Game::ResetBall()
@@ -126,5 +126,10 @@ void Game::CheckCollision()
 	}
 
 	// TODO #7 - If ball touches bottom of window, pause ball and display defeat text with R to reset
-	
+	if (paddle.y_position < ball.y_position)
+	{
+		ball.x_velocity = 0;
+		ball.y_velocity = 0;
+		
+	}
 }
